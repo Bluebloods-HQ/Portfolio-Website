@@ -35,29 +35,35 @@ navLinks.querySelectorAll('a').forEach(a => {
 });
 
 /* ─── TESTIMONIAL SLIDER ─── */
+/* ─── TESTIMONIAL SLIDER ─── */
 const track = document.getElementById('testimonialTrack');
-const cards = track.querySelectorAll('.testimonial-card');
-let current = 0;
+let offset = 0;
+let isAnimating = false;
 
-function cardWidth() {
-  return cards[0].offsetWidth + 24; // card width + gap
+// Each card is 340px wide + 24px gap = 364px per step
+const STEP = 364;
+
+function nudgeTrack(direction) {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  // Pause the CSS animation temporarily
+  track.style.animationPlayState = 'paused';
+  track.style.transition = 'transform 0.5s ease';
+
+  offset += direction * STEP;
+  track.style.transform = `translateX(${-offset}px)`;
+
+  setTimeout(() => {
+    isAnimating = false;
+    // Resume auto-scroll from current position
+    track.style.transition = '';
+    track.style.animationPlayState = 'running';
+  }, 520);
 }
 
-function slideTo(idx) {
-  const max = cards.length - Math.floor(track.parentElement.offsetWidth / cardWidth());
-  current = Math.max(0, Math.min(idx, max));
-  track.style.transform = `translateX(-${current * cardWidth()}px)`;
-}
-
-document.getElementById('nextBtn').addEventListener('click', () => slideTo(current + 1));
-document.getElementById('prevBtn').addEventListener('click', () => slideTo(current - 1));
-
-// Auto-advance every 5 seconds
-setInterval(() => {
-  const max = cards.length - Math.floor(track.parentElement.offsetWidth / cardWidth());
-  slideTo(current >= max ? 0 : current + 1);
-}, 5000);
-
+document.getElementById('prevBtn').addEventListener('click', () => nudgeTrack(-1));
+document.getElementById('nextBtn').addEventListener('click', () => nudgeTrack(1));
 /* ─── SCROLL REVEAL ─── */
 const revealEls = document.querySelectorAll('section, .work-item, .testimonial-card, .expertise-list li');
 

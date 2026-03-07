@@ -266,7 +266,24 @@ h2 strong { color: var(--accent); }
 .testimonial-card strong { display: block; font-size: 0.9rem; }
 .testimonial-card span { font-size: 0.8rem; opacity: 0.5; }
 
-.testimonial-controls { display: none; }
+.testimonial-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+.testimonial-controls button {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  width: 2.8rem; height: 2.8rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.testimonial-controls button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 
 /* ─── CONTACT ─── */
 #contact { background: #111; }
