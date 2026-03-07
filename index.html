@@ -63,28 +63,12 @@
     </p>
   
     <div class="plans-grid">
-        <!-- ENTERPRISE PRO PLAN -->
-      <div class="plan-card featured" style="--plan-color: #dc2626;" data-plan="Enterprise Pro Plan" data-price="$5,599">
-        <div class="plan-badge">BEST VALUE</div>
-        <div class="plan-left">
-          <h3><br>ENTERPRISE<br/>PRO PLAN</h3>
-        </div>
-        <div class="plan-right">
-          <ul>
-            <li>730 designs (2 per day)</li>
-            <li>All public/bank holidays incl.</li>
-            <li>Delivery in 17 Days</li>
-          </ul>
-          <p class="plan-price">$5,599<span>/project</span></p>
-          <button class="plan-btn" onclick="openModal(this)">Get Started</button>
-        </div>
-        <div class="plan-fold"></div>
-      </div>
 
       <!-- ENTERPRISE PLAN -->
-      <div class="plan-card" style="--plan-color: #dc2626;" data-plan="Enterprise Plan" data-price="$3,999">
+      <div class="plan-card featured" style="--plan-color: #dc2626;" data-plan="Enterprise Plan" data-price="$3,999">
+        <div class="plan-badge">BEST VALUE</div>
         <div class="plan-left">
-          <h3>ENTERPRISE<br/>PLAN</h3>
+          <h3><br>ENTERPRISE<br/>PLAN</h3>
         </div>
         <div class="plan-right">
           <ul>
@@ -93,6 +77,23 @@
             <li>Delivery in 17 Days</li>
           </ul>
           <p class="plan-price">$3,999<span>/project</span></p>
+          <button class="plan-btn" onclick="openModal(this)">Get Started</button>
+        </div>
+        <div class="plan-fold"></div>
+      </div>
+
+      <!-- ENTERPRISE PRO PLAN -->
+      <div class="plan-card" style="--plan-color: #dc2626;" data-plan="Enterprise Pro Plan" data-price="$5,599">
+        <div class="plan-left">
+          <h3>ENTERPRISE<br/>PRO PLAN</h3>
+        </div>
+        <div class="plan-right">
+          <ul>
+            <li>730 designs (2 per day)</li>
+            <li>All public/bank holidays incl.</li>
+            <li>Delivery in 17 Days</li>
+          </ul>
+          <p class="plan-price">$5,599<span>/project</span></p>
           <button class="plan-btn" onclick="openModal(this)">Get Started</button>
         </div>
         <div class="plan-fold"></div>
@@ -245,7 +246,7 @@
     <h2>OUR EXPERTISE</h2>
     <p class="section-intro">
       We craft tailored solutions in <strong>marketing strategy</strong>, <strong>brand identity</strong>,
-      <strong>web & mobile development</strong>, and more — turning every idea into a unique experience.
+      <strong>web & mobile development</strong>, and more, turning every idea into a unique experience.
     </p>
     <ul class="expertise-list">
       <li>Marketing</li>
@@ -253,10 +254,6 @@
       <li>Website Creation</li>
       <li>Web App Development</li>
     </ul>
-    <a href="#contact" class="btn btn-outline">
-      <span>See all our services</span>
-      <span>See all our services</span>
-    </a>
   </section>
 
   <!-- WORK -->
@@ -265,17 +262,17 @@
     <blockquote class="section-quote">"We'll get straight to the point."</blockquote>
     <h2>OUR CREATIVE <strong>COLLABORATIONS</strong></h2>
     <div class="work-grid">
-      <a href="#" class="work-item">
-        <div class="work-img" style="background-image: url('img/project1.jpg')"></div>
+      <a href="./projects/2kings.html" class="work-item">
+        <div class="work-img" style="background-image: url('./images/2kings/Battery\ and\ you.png')"></div>
         <h3>2 Kings</h3>
         <p>Brand identity & Communications Design</p>
       </a>
-      <a href="#" class="work-item">
-        <div class="work-img" style="background-image: url('img/project2.jpg')"></div>
+      <a href="./projects/dnil.html" class="work-item">
+        <div class="work-img" style="background-image: url('./images/DNIL/46.png')"></div>
         <h3>DNIL</h3>
         <p>Communications Design</p>
       </a>
-      <a href="#" class="work-item">
+      <a href="./projects/phlnga.html" class="work-item">
         <div class="work-img" style="background-image: url('img/project3.jpg')"></div>
         <h3>Phlnga's Management</h3>
         <p>Communications Design</p>
@@ -290,10 +287,10 @@
         <h3>Simlab</h3>
         <p>Website Development</p>
       </a>
-      <a href="#" class="work-item">
-        <div class="work-img" style="background-image: url('img/project6.jpg')"></div>
-        <h3>Inule</h3>
-        <p>illustration</p>
+      <a href="./projects/liberato.html" class="work-item">
+        <div class="work-img" style="background-image: url('./images/liberato/Liberator-05.png')"></div>
+        <h3>Liberato</h3>
+        <p>Brand Identity</p>
       </a>
     </div>
     <a href="#" class="btn btn-outline">
@@ -379,10 +376,10 @@
       </div>
       <input type="tel" name="phone" placeholder="Phone *" required />
       <textarea name="message" placeholder="Message" rows="5"></textarea>
-      <label class="checkbox-label">
+      <div class="checkboxdiv">
         <input type="checkbox" required />
-        I consent to my personal data being used to respond to my request.
-      </label>
+        <span>I consent to my personal data being used to respond to my request.</span>
+      </div>
       <button type="submit" class="btn">Send</button>
     </form>
   </section>
