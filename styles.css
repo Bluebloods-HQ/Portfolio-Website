@@ -448,6 +448,7 @@ footer a:hover { opacity: 1; color: var(--accent); }
   border-radius: 10px 0 0 10px;
   clip-path: polygon(16px 0%, 100% 0%, 100% 100%, 0% 100%);
 }
+
 .plan-right ul { padding-left: 1rem; display: flex; flex-direction: column; gap: 0.3rem; }
 .plan-right ul li { font-size: 0.88rem; font-weight: 500; list-style: disc; }
 
