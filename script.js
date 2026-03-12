@@ -65,12 +65,18 @@ function nudgeTrack(direction) {
 document.getElementById('prevBtn').addEventListener('click', () => nudgeTrack(-1));
 document.getElementById('nextBtn').addEventListener('click', () => nudgeTrack(1));
 /* ─── SCROLL REVEAL ─── */
-const revealEls = document.querySelectorAll('section, .work-item, .testimonial-card, .expertise-list li');
+// Exclude #contact (blue CTA block) — it's a full-bleed section that should never be hidden
+const revealEls = document.querySelectorAll('section:not(#contact), .work-item, .testimonial-card, .expertise-list li');
+
+const applyVisible = (el) => {
+  el.style.opacity = '1';
+  el.style.transform = 'translateY(0)';
+};
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.classList.add('visible');
+      applyVisible(e.target);
       observer.unobserve(e.target);
     }
   });
@@ -83,26 +89,7 @@ revealEls.forEach(el => {
   observer.observe(el);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.visible').forEach(el => {
-    el.style.opacity = '1';
-    el.style.transform = 'none';
-  });
-});
-
-// Apply visible state
-document.addEventListener('scroll', () => {}, { passive: true });
-
-const applyVisible = (el) => {
-  el.style.opacity = '1';
-  el.style.transform = 'translateY(0)';
-};
-
-new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) applyVisible(e.target); });
-}, { threshold: 0.12 }).observe(document.body); // fallback — real work done above
-
-// Fix: attach to each element properly
+// Dummy block kept for syntax parity — real work done above
 revealEls.forEach(el => {
   new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
@@ -111,15 +98,7 @@ revealEls.forEach(el => {
   }, { threshold: 0.12 }).observe(el);
 });
 
-/* ─── CONTACT FORM ─── */
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"]');
-  btn.textContent = 'Sent ✓';
-  btn.style.background = '#4caf50';
-  btn.disabled = true;
-  // TODO: replace with your real form submission (e.g. fetch to API)
-});
+/* ─── CONTACT FORM (removed — now using Book a Call page) ─── */
 
 /* ─── PLANS MODAL ─── */
 const modal = document.getElementById('planModal');
@@ -209,3 +188,46 @@ async function submitPlanForm(e) {
     submitBtn.disabled = false;
   }
 }
+/* ─── CONTACT FORM ─── */
+const CONTACT_FORMSPREE = 'https://formspree.io/f/xkoqrjgn'; // ← paste your Formspree endpoint here
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = this.querySelector('button[type="submit"]');
+  const original = btn.textContent;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(CONTACT_FORMSPREE, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        name:    this.querySelector('[name="name"]').value,
+        email:   this.querySelector('[name="email"]').value,
+        phone:   this.querySelector('[name="phone"]').value,
+        message: this.querySelector('[name="message"]').value,
+      })
+    });
+
+    if (res.ok) {
+      btn.textContent = 'Sent ✓';
+      btn.style.background = '#4caf50';
+      this.reset();
+    } else {
+      throw new Error('Failed');
+    }
+  } catch (err) {
+    btn.textContent = 'Failed — try again';
+    btn.style.background = '#dc2626';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+    }, 3000);
+  }
+});
