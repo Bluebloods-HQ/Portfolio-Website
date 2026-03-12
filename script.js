@@ -209,7 +209,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
       body: JSON.stringify({
         name:    this.querySelector('[name="name"]').value,
         email:   this.querySelector('[name="email"]').value,
-        phone:   this.querySelector('[name="phone"]').value,
+        phone: this.querySelector('[name="country_code"]').value + ' ' + this.querySelector('[name="phone"]').value,
         message: this.querySelector('[name="message"]').value,
       })
     });
